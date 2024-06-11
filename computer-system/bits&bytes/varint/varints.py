@@ -1,19 +1,21 @@
-def encode(num):
+def encode(number: int) -> bytes:
     output_bytes = []
-    while True:
-        has_next = ((num >> 7) & 0x7F) != 0
-        if has_next:
-            output_bytes.append((num & 0x7F) | 0x80)
-        else:
-            output_bytes.append(num & 0x7F)
-            break
-        num >>= 7
+    while number > 0:
+        n = number & 0x7F
+        number >>= 7
+        if number > 0:  # add MSB bit
+            n |= 0x80
+        output_bytes.append(n)
     return bytes(output_bytes)
 
 
-def decode(binary_data):
-    # big-edian
-    return 0
+def decode(bdata: bytes) -> int:
+    res = 0
+    for x in reversed(bdata):
+        res <<= 7
+        res = res | (x & 0x7F)
+
+    return res
 
 
 if __name__ == "__main__":
@@ -30,3 +32,4 @@ if __name__ == "__main__":
         print(f"binary_data: {binary_data} number value: {num}")
         print(f"encode: {encode(num)}")
         print(f"decode: {decode(encode(num))}")
+        print("-------------------------")
