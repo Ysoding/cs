@@ -9,9 +9,9 @@ def rotate_bmp(input_path, output_path):
         height = int.from_bytes(data[22:26], byteorder="little")
 
         # rotate
-
         for y in range(width):
             for x in range(height):
+                # 考虑矩阵的转置，只不过是一维数组
                 ty, tx = x, width - y - 1
                 new_idx = ty * width + tx
                 # new_idx = (ty + tx * height)
