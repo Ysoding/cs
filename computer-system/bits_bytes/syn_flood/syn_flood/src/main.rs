@@ -24,6 +24,7 @@ use std::io::{self, Read};
 
 fn main() {
     // cd syn_flood/ && cargo build && cd .. && cat synflood.pcap | syn_flood/target/debug/syn_flood
+    // 95829 packets parsed with 56298 connections, 39531 (70.22%) acknowledged
     let mut buffer = Vec::new();
     io::stdin()
         .read_to_end(&mut buffer)
