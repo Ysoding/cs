@@ -10,7 +10,7 @@ bool is_pangramV1(char *line) {
 
   while (*line != '\n') {
     if (isalpha(*line)) {
-      size_t idx = tolower(*line) - 'a';
+      int idx = tolower(*line) - 'a';
       if (alphabet[idx] == 0) {
         alphabet[idx] = 1;
         unique_cnt += 1;
@@ -37,7 +37,7 @@ bool is_pangram(char *line) {
 
 int main() {
   char *buffer = NULL;
-  size_t len = 0;
+  int len = 0;
   ssize_t read;
 
   while ((read = getline(&buffer, &len, stdin)) != -1) {

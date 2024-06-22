@@ -6,8 +6,8 @@
 
 typedef struct DA {
   void **items;
-  size_t length;
-  size_t capacity;
+  int length;
+  int capacity;
 } DA;
 
 DA *DA_new(void) {
@@ -33,7 +33,7 @@ void DA_push(DA *da, void *x) {
   da->items[da->length++] = x;
 }
 
-void DA_set(DA *da, void *x, size_t i) { da->items[i] = x; }
+void DA_set(DA *da, void *x, int i) { da->items[i] = x; }
 
 void *DA_get(DA *da, int i) { return da->items[i]; }
 
@@ -45,7 +45,6 @@ void *DA_pop(DA *da) {
 }
 
 int main() {
-
   DA *da = DA_new();
 
   int size = DA_size(da);
@@ -85,8 +84,7 @@ int main() {
   for (i = 0; i < n; i++) {
     assert(DA_get(da, i) == &arr[i]);
   }
-  for (; n; n--)
-    DA_pop(da);
+  for (; n; n--) DA_pop(da);
   assert(DA_size(da) == 0);
   assert(DA_pop(da2) == &x);
 
